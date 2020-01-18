@@ -17,11 +17,12 @@ using Windows.Media.Core;
 using Windows.Media.Playback;
 using System.Net.Http;
 using System.Net;
+using InternetRadio.ViewModels;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace InternetRadio
+namespace InternetRadio.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -33,25 +34,26 @@ namespace InternetRadio
         MediaSource mediaSource;
         MediaPlayer player;
 
+
+        public MainPageViewModel ViewModel { get; private set; }
+
         public MainPage()
         {
             this.InitializeComponent();
             
             mediaSource = MediaSource.CreateFromUri(radioStation);
-            MseStreamSource mseStreamSource = new MseStreamSource();
-            
+            MseStreamSource mseStreamSource = new MseStreamSource();            
 
             mediaPlayerElement.Source = mediaSource;
         }
 
-        private void MediaPlayer_MediaOpened(Windows.Media.Playback.MediaPlayer sender, object args)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            
+            if (ViewModel == null)
+            {
+                ViewModel = new MainPageViewModel();
+            }
         }
 
-        private void MediaSource_StateChanged(MediaSource sender, MediaSourceStateChangedEventArgs args)
-        {
-            
-        }
     }
 }
