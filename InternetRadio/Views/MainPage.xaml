@@ -9,21 +9,20 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid>
         <NavigationView x:Name="MainNavigationView"
-                        
-                    IsSettingsVisible="False"
-                    OpenPaneLength="180"
-                        
-                    IsBackEnabled="{x:Bind ContentFrame.CanGoBack, Mode=OneWay}">
+                        IsSettingsVisible="False"
+                        OpenPaneLength="180"
+                        ItemInvoked="NavigationView_ItemInvoked"
+                        IsBackEnabled="{x:Bind ContentFrame.CanGoBack, Mode=OneWay}">
             <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Favorite"
+                                Content="My Stations"
+                                TabIndex="2"
+                                Tag="MyStationsPage" />
                 <NavigationViewItem Icon="World"
                                 Content="Radio Directory"
                                 TabIndex="0"
-                                Tag="NewMoviesPage"
+                                Tag="RadioDirectoryPage"
                                 IsSelected="True"/>
-                <NavigationViewItem Icon="Favorite"
-                                Content="Favorites"
-                                TabIndex="2"
-                                Tag="MoviesWatchlistPage" />
             </NavigationView.MenuItems>
             <Grid>
                 <Grid.RowDefinitions>
@@ -35,8 +34,7 @@
                 <MediaPlayerElement x:Name="mediaPlayerElement"                                    
                                     Grid.Row="1"
                                     Width="200"
-                                    HorizontalAlignment="Stretch"
-                                    AreTransportControlsEnabled="True" Height="50" VerticalAlignment="Bottom">
+                                    AreTransportControlsEnabled="True" >
                     <MediaPlayerElement.TransportControls>
                         <MediaTransportControls IsSeekEnabled="False"
                                                 Height="50"

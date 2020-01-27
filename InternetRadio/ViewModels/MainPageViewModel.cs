@@ -6,16 +6,16 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace InternetRadio.ViewModels
 {
-    public class MainPageViewModel
+    public class MainPageViewModel : BindableBase
     {
-        public async Task<IEnumerable<string>> ResolveRadioApiServers()
+        private Radio _radio;
+        public Radio Radio 
         {
-            var addresses = await Task.Run(() => Dns.GetHostAddresses(Constants.RadioBrowserDns));
-            var hostEntries = addresses.Select(address => Dns.GetHostEntry(address.ToString()));
-
-            return hostEntries.Select(hostEntry => hostEntry.HostName);
+            get { return _radio; }
+            set { SetProperty(ref _radio, value); }
         }
 
     }

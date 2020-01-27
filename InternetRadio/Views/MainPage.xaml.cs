@@ -32,27 +32,43 @@ namespace InternetRadio.Views
         private Uri radioStation = new Uri("http://play.global.audio/radio1rock.opus");
         
         MediaSource mediaSource;
-        MediaPlayer player;
-
 
         public MainPageViewModel ViewModel { get; private set; }
 
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            InitNavigation();
             
-            mediaSource = MediaSource.CreateFromUri(radioStation);
-            MseStreamSource mseStreamSource = new MseStreamSource();            
+            mediaSource = MediaSource.CreateFromUri(radioStation);            
 
             mediaPlayerElement.Source = mediaSource;
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        private void InitNavigation()
+        {
+            NavigationService.ContentFrame = ContentFrame;
+        }
+
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (ViewModel == null)
             {
                 ViewModel = new MainPageViewModel();
             }
+        }
+
+        private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            NavigationViewItem item = args.InvokedItemContainer as NavigationViewItem;
+
+            if (item?.Tag == null)
+            {
+                return;
+            }
+
+            NavigationService.NavigateTo(item.Tag.ToString());
         }
 
     }
