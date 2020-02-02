@@ -1,4 +1,6 @@
-﻿using InternetRadio.ViewModels;
+﻿using InternetRadio.Events;
+using InternetRadio.Models;
+using InternetRadio.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,8 @@ namespace InternetRadio
 {
     public static class NavigationService
     {
+        public static event EventHandler<ChangeRadioStationEventArgs> ChangeRadioStationHandler;
+
         public static Frame ContentFrame { get; set; }
 
         private static Dictionary<string, BaseViewModel> NavigationState { get; } = new Dictionary<string, BaseViewModel>();
@@ -50,6 +54,11 @@ namespace InternetRadio
         public static void NavigateTo(Type pageType, object parameter = null)
         {
             ContentFrame?.NavigateToType(pageType, parameter, null);
+        }
+
+        public static void ChangeRadioStation(Radio radio)
+        {
+            ChangeRadioStationHandler?.Invoke(null, new ChangeRadioStationEventArgs { Radio = radio });
         }
     }
 }

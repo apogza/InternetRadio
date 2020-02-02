@@ -32,8 +32,10 @@
                 <Frame x:Name="ContentFrame"
                        Grid.Row="0"/>
                 <MediaPlayerElement x:Name="mediaPlayerElement"                                    
-                                    Grid.Row="1"
+                                    Grid.Row="1"                                    
                                     Width="200"
+                                    Source="{x:Bind ViewModel.RadioStation, Mode=OneWay}"
+                                    AutoPlay="True"
                                     AreTransportControlsEnabled="True" >
                     <MediaPlayerElement.TransportControls>
                         <MediaTransportControls IsSeekEnabled="False"

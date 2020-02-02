@@ -29,9 +29,6 @@ namespace InternetRadio.Views
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private Uri radioStation = new Uri("http://play.global.audio/radio1rock.opus");
-        
-        MediaSource mediaSource;
 
         public MainPageViewModel ViewModel { get; private set; }
 
@@ -39,10 +36,6 @@ namespace InternetRadio.Views
         {
             InitializeComponent();
             InitNavigation();
-            
-            mediaSource = MediaSource.CreateFromUri(radioStation);            
-
-            mediaPlayerElement.Source = mediaSource;
         }
 
         private void InitNavigation()
@@ -50,13 +43,9 @@ namespace InternetRadio.Views
             NavigationService.ContentFrame = ContentFrame;
         }
 
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (ViewModel == null)
-            {
-                ViewModel = new MainPageViewModel();
-            }
+            ViewModel = NavigationService.RestoreState<MainPageViewModel>();
         }
 
         private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)

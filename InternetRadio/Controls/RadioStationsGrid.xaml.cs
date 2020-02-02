@@ -30,9 +30,29 @@ namespace InternetRadio.Controls
             set { SetValue(RadiosProperty, value); }
         }
 
+        public static DependencyProperty SelectedRadioProperty =
+            DependencyProperty.Register("SelectedRadio", typeof(Radio),
+                typeof(RadioStationsGrid), new PropertyMetadata(default(Radio)));
+
+        public Radio SelectedRadio
+        { 
+            get { return (Radio)GetValue(SelectedRadioProperty); }
+            set { SetValue(SelectedRadioProperty, value); }
+        }
+
         public RadioStationsGrid()
         {
             this.InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var radio = ((Button)sender).Tag as Radio;
+
+            if (radio != null)
+            {
+                NavigationService.ChangeRadioStation(radio);
+            }
         }
     }
 }

@@ -37,7 +37,8 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
-        <controls:RadioStationsGrid Radios="{x:Bind ViewModel.Radios, Mode=OneWay}" 
+        <controls:RadioStationsGrid Radios="{x:Bind ViewModel.Radios, Mode=OneWay}"
+                                    SelectedRadio="{x:Bind ViewModel.SelectedRadio, Mode=OneWay}"
                                     Grid.Row="1"/>
     </Grid>
 </Page>

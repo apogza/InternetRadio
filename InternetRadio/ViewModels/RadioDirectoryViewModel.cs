@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InternetRadio.ViewModels
 {
-    public class RadioDirectoryViewModel: BaseViewModel 
+    public class RadioDirectoryViewModel : BaseViewModel
     {
         private IEnumerable<Country> _countries;
 
@@ -32,6 +32,14 @@ namespace InternetRadio.ViewModels
         {
             get { return _radios; }
             set { SetProperty(ref _radios, value); }
+        }
+
+        private Radio _selectedRadio;
+
+        public Radio SelectedRadio
+        {
+            get { return _selectedRadio; }
+            set { SetProperty(ref _selectedRadio, value); }
         }
 
         private string _apiServer;

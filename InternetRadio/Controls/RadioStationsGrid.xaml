@@ -11,7 +11,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     <GridView ItemsSource="{x:Bind Radios, Mode=OneWay}"
-              >
+              SelectedItem="{x:Bind SelectedRadio, Mode=OneWay}">
         <GridView.ItemTemplate>
             <DataTemplate x:DataType="models:Radio">
                 <StackPanel Spacing="10"
@@ -28,7 +28,7 @@
                     <StackPanel Orientation="Horizontal"
                                 Spacing="5"
                                 HorizontalAlignment="Center">
-                        <Button>
+                        <Button Click="Button_Click" Tag="{x:Bind }">
                             <SymbolIcon Symbol="Play"/>
                         </Button>
                         <Button>

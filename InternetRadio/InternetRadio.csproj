@@ -122,6 +122,7 @@
     <Compile Include="Controls\RadioStationsGrid.xaml.cs">
       <DependentUpon>RadioStationsGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Events\ChangeRadioStationEventArgs.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Country.cs" />
